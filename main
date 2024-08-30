@@ -1,0 +1,66 @@
+import pygame
+import time
+import random
+pygame.font.init()
+
+WIDTH, HEIGHT = 1000, 800
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Space Dodge")
+
+BG = pygame.transform.scale(pygame.image.load("bg.jpeg"), (WIDTH, HEIGHT))
+
+PLAYER_WIDTH = 40
+PLAYER_HEIGHT = 60
+
+PLAYER_VEL = 5
+STAR_WIDTH = 10
+STAR_HEIGHT = 20
+STAR_VEL = 3
+
+FONT = pygame.font.SysFont("comicsans", 30)
+runda = 0
+
+def draw(player, elapsed_time, stars):
+    WIN.blit(BG, (0, 0))
+    Question = ["Är jorden rund?", "Är Malmö FF bäst?"]
+    time_text = FONT.render(Question[runda], 1, "white")
+    WIN.blit(time_text, (10, 10))
+
+    pygame.display.update()
+
+
+def main():
+    run = True
+
+    player = pygame.Rect(200, HEIGHT - PLAYER_HEIGHT,
+                         PLAYER_WIDTH, PLAYER_HEIGHT)
+    clock = pygame.time.Clock()
+    start_time = time.time()
+    elapsed_time = 0
+
+    star_add_increment = 2000
+    star_count = 0
+
+    stars = []
+    hit = False
+
+    while run:
+        
+        keys = pygame.key.get_pressed()        
+        if keys[pygame.K_y]:
+            Answer = 1
+            print(Answer)
+            runda =+ 1
+        else:
+            Answer = 0
+            print(Answer)
+        
+  
+
+        draw(player, elapsed_time, stars)
+
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
